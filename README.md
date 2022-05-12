@@ -1,6 +1,6 @@
 finviz 
-##########
-*FORK of [Unofficial Python API for FinViz](https://github.com/mariostoev/finviz)*
+================
+FORK of [Unofficial Python API for FinViz]( https://github.com/mariostoev/finviz )
 
 TWEAKS
 ================
