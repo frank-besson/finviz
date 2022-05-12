@@ -27,7 +27,7 @@ def get_stock(ticker, path=None):
     :return dict
     """
 
-    page_parsed = None
+    page_parsed = get_page(ticker)
 
     if path:
         with open(path, 'r') as f:  
