@@ -17,6 +17,12 @@ from finviz.helper_functions.error_handling import ConnectionTimeout
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
+def http_doc_get(
+    doc
+):
+    return html.fromstring(doc), ''
+
+
 def http_request_get(
     url, session=None, payload=None, parse=True, user_agent=generate_user_agent()
 ):

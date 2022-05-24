@@ -2,7 +2,7 @@ from datetime import datetime
 
 from lxml import etree
 
-from finviz.helper_functions.request_functions import http_request_get
+from finviz.helper_functions.request_functions import http_request_get, http_doc_get
 from finviz.helper_functions.scraper_functions import get_table
 
 STOCK_URL = "https://finviz.com/quote.ashx"
@@ -18,7 +18,7 @@ def get_page(ticker):
     return STOCK_PAGE
 
 
-def get_stock(ticker):
+def get_stock(ticker, path=None):
     """
     Returns a dictionary containing stock data.
 
@@ -27,8 +27,14 @@ def get_stock(ticker):
     :return dict
     """
 
-    page_parsed = get_page(ticker)
+    page_parsed = None
 
+    if path:
+        with open(path, 'r') as f:  
+            page_parsed, _ = http_doc_get(f.read())
+    else:    
+        page_parsed = get_page(ticker)
+    
     title = page_parsed.cssselect('table[class="fullview-title"]')[0]
     keys = ["Company", "Sector", "Industry", "Country"]
     fields = [f.text_content() for f in title.cssselect('a[class="tab-link"]')]
